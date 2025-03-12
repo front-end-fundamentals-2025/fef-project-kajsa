@@ -62,9 +62,8 @@ main {
   grid-template-rows: repeat(10, 1fr);
 
   grid-template-areas:
-    "headline headline headline headline"
-    "slideshow slideshow slideshow slideshow"
-    "slideshow slideshow slideshow slideshow";
+    ". . headline headline"
+    "slideshow . . . ";
 }
 
 h1 {
