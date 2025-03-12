@@ -59,11 +59,17 @@ footer {
 main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 20px;
 
   grid-template-areas:
-    ". . headline headline"
-    "slideshow . . . ";
+    "headline headline headline headline"
+    "slideshow slideshow slideshow slideshow "
+    "slideshow slideshow slideshow slideshow "
+    " P P P P ";
+
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 h1 {
@@ -76,7 +82,7 @@ h1 {
 
 .slideshow {
   grid-area: slideshow;
-  max-width: 1000px;
+  max-width: 100%;
   position: relative;
   margin: auto;
 }
@@ -88,6 +94,22 @@ h1 {
 .slides-pics {
   aspect-ratio: 600 / 200;
   max-width: 100%;
+  height: 50%;
+  object-fit: cover;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Adjust for responsiveness */
+  grid-area: P;
+  grid-gap: 20px;
+  width: 100%;
+}
+
+.product-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 /* Product page */
