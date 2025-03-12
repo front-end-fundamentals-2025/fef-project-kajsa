@@ -17,6 +17,8 @@ header {
   align-items: baseline;
   justify-content: space-between;
   padding: 20px;
+  /* padding-right: 20px;
+  padding-bottom: 20px; */
 }
 
 /* header menu  */
@@ -42,76 +44,6 @@ menu {
   padding: 0;
 }
 
-/* heading responsive */
-
-@media screen and (max-width: 700px) {
-  header {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  ul {
-    flex-direction: row;
-    justify-content: center;
-    padding: 0;
-  }
-
-  ul > a {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  #logo {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  menu {
-    padding-left: 10px;
-  }
-}
-
-/* Home */
-
-.main-area {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 8px;
-  grid-row-gap: 12px;
-
-  /* padding-left: 40px;
-  padding-right: 40px;
-
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: minmax(100px, auto);
-  /* grid-template-rows: repeat(10, 150px); */
-  /* grid-auto-rows: minmax(100px, auto); */
-  /* grid-template-rows: repeat(10, 1fr); */
-
-  grid-template-areas: " header header header ";
-}
-
-h1 {
-  grid-area: HL;
-  text-align: center;
-  margin-top: 50px;
-}
-
-.slides-pic {
-  grid-area: SP;
-  width: 100%;
-}
-
-/* main products */
-
-/* Product page */
-
-/* Detail page */
-
-/* Cart */
-
 /* Footer */
 
 footer {
@@ -121,3 +53,46 @@ footer {
   justify-content: space-between;
   align-items: center;
 }
+
+/* Home */
+
+main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+
+  grid-template-areas:
+    "headline headline headline headline"
+    "slideshow slideshow slideshow slideshow"
+    "slideshow slideshow slideshow slideshow";
+}
+
+h1 {
+  grid-area: headline;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* slideshow */
+
+.slideshow {
+  grid-area: slideshow;
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* .slides {
+  /* display: none; */
+/* } */
+
+.slides-pics {
+  aspect-ratio: 600 / 200;
+  max-width: 100%;
+}
+
+/* Product page */
+
+/* Detail page */
+
+/* Cart */
