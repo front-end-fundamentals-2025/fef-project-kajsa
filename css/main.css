@@ -56,7 +56,7 @@ footer {
 
 /* Home */
 
-main {
+#main-page {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
@@ -117,6 +117,32 @@ h1 {
 }
 
 /* Product page */
+
+#product-page {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 20px;
+
+  grid-template-areas:
+    "headline headline headline headline"
+    " P P P P "
+    "name name name name";
+
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.products-page {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Adjust for responsiveness */
+  grid-area: P;
+  grid-gap: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 100%;
+  text-align: center;
+}
 
 /* Detail page */
 
