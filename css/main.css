@@ -32,7 +32,6 @@ li > a {
   padding-left: 20px;
   padding-right: 20px;
   color: black;
-  text-decoration: none;
 }
 
 #cart {
@@ -95,6 +94,8 @@ h1 {
   object-fit: cover;
 }
 
+/* product grids */
+
 .products {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Adjust for responsiveness */
@@ -122,7 +123,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
-  grid-gap: 20px;
+  grid-gap: 50px;
 
   grid-template-areas:
     "headline headline headline headline"
@@ -137,7 +138,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Adjust for responsiveness */
   grid-area: P;
-  grid-gap: 20px;
+  grid-gap: 50px;
   padding-top: 40px;
   padding-bottom: 40px;
   width: 100%;
