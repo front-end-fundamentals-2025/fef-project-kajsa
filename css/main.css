@@ -109,7 +109,7 @@ h1 {
 
 .product-img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -128,13 +128,14 @@ h1 {
   grid-template-areas:
     "headline headline headline headline"
     " P P P P "
-    "name name name name";
+    "name name name name"
+    "cart cart cart cart";
 
   padding-left: 40px;
   padding-right: 40px;
 }
 
-.products-page {
+.products-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Adjust for responsiveness */
   grid-area: P;
@@ -143,6 +144,14 @@ h1 {
   padding-bottom: 40px;
   width: 100%;
   text-align: center;
+}
+
+/* add to cart */
+
+.add-cart {
+  grid-area: cart;
+  width: 150px;
+  height: 30px;
 }
 
 /* Detail page */
