@@ -215,7 +215,7 @@ menu {
 
 h1 {
   grid-area: headline;
-  font-size: 60px;
+  font-size: 40px;
   text-align: center;
   margin-top: 50px;
 }
@@ -271,6 +271,17 @@ h1 {
 
   padding-left: 40px;
   padding-right: 40px;
+}
+
+.item-box > img,
+.item-box > p {
+  margin: 7px;
+}
+
+.cart-button {
+  background-color: inherit;
+  border-width: 1px;
+  border-radius: 5%;
 }
 
 /* product grids */
