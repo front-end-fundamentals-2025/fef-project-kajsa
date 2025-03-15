@@ -43,6 +43,92 @@ menu {
   padding: 0;
 }
 
+/* header responsive */
+
+/* @media screen and (max-width: 995px) {
+  #Logo {
+    font-size: 80px;
+    padding-left: 0px;
+    padding-right: 0;
+    color: black;
+    text-decoration: none;
+    text-align: center; 
+  }
+
+  header {
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  /* header menu  */
+/* nav > ul,
+  ul > li,
+  li > a {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: black;
+  }
+
+  #cart {
+    border: none;
+    background-color: inherit;
+  }
+
+  menu {
+    padding: 0;
+  } */
+/* } */
+
+/* header responsive option 2 */
+
+@media screen and (max-width: 995px) {
+  #Logo {
+    font-size: 80px;
+    padding: 0;
+    color: black;
+    text-decoration: none;
+  }
+
+  header {
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center;
+    justify-content: center; */
+    padding: 20px;
+  }
+  /* header menu  */
+  nav > ul,
+  ul > li,
+  li > a {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: black;
+  }
+
+  #cart {
+    border: none;
+    background-color: inherit;
+  }
+
+  menu {
+    padding: 0;
+  }
+}
+
 /* Home */
 
 #main-page {
@@ -78,7 +164,7 @@ h1 {
 .item-box {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers everything inside */
+  align-items: center;
   grid-area: IB;
   padding: 20px;
 }
