@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Select the cart icon, cart tab, close button, cart list, cart buttons, and number-items badge
+  // Select the cart icon and the shopping cart tab
   const cartIcon = document.querySelector(".cart");
   const cartTab = document.querySelector(".show-cart");
   const closeButton = document.querySelector(".close");
   const cartList = document.querySelector(".shopping-list");
   const cartButtons = document.querySelectorAll(".cart-button");
-  const cartBadge = document.querySelector(".number-items"); // Select the badge
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -30,18 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.remove("show-cart");
   });
 
-  // Function to update cart badge count
-  function updateCartBadge() {
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-    if (totalItems > 0) {
-      cartBadge.textContent = totalItems;
-      cartBadge.style.display = "flex"; // Show badge
-    } else {
-      cartBadge.style.display = "none"; // Hide badge if empty
-    }
-  }
-
   // Function to render the cart items
   function renderCart() {
     cartList.innerHTML = ""; // Clear existing items
@@ -63,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
     saveCart();
-    updateCartBadge(); // Update badge when rendering cart
     addEventListenersToButtons();
   }
 
@@ -118,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", addToCart);
   });
 
-  // Initialize the cart display and update badge
+  // Initialize the cart display
   renderCart();
-  updateCartBadge();
 });

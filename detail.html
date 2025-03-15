@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KpinSwe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="js/main.js" defer></script>
   </head>
   <body>
     <!-- LARGE AND TABLET SCREEN -->
@@ -35,7 +46,35 @@
         </div>
       </div>
     </header>
-    <main></main>
+    <main>
+      <div class="show-cart">
+        <div class="cart-tab">
+          <h1>Shopping Cart</h1>
+          <div class="shopping-list">
+            <div class="item">
+              <div>
+                <img src="img/test2.jpg" alt="" />
+              </div>
+              <div class="cart-name">
+                <p>hej</p>
+              </div>
+              <div class="cart-price">
+                <p>200sek</p>
+              </div>
+              <div class="quantity">
+                <span class="minus">-</span>
+                <span>1</span>
+                <span class="plus">+</span>
+              </div>
+            </div>
+          </div>
+          <div class="btn">
+            <button class="close">CLOSE</button>
+            <button class="checkout">CHECKOUT</button>
+          </div>
+        </div>
+      </div>
+    </main>
     <footer>
       <a href=""></a>
       <ul>
@@ -43,6 +82,24 @@
         <li><a href=""> FAQ </a></li>
         <li><a href=""> About us </a></li>
       </ul>
+      <p class="copyright">hejhopp</p>
+      <section class="footer-links">
+        <a href="">
+          <figure>
+            <img src="img/linkedin-logo.png" alt="" class="social-media" />
+          </figure>
+        </a>
+        <a href="">
+          <figure>
+            <img src="img/instagram-logo.png" alt="" class="social-media" />
+          </figure>
+        </a>
+        <a href="">
+          <figure>
+            <img src="img/mail-logo.png" alt="" class="social-media" />
+          </figure>
+        </a>
+      </section>
     </footer>
   </body>
 </html>

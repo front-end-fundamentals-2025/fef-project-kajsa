@@ -90,7 +90,7 @@ body.show-cart .cart-tab {
 .cart-tab .shopping-list .item {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 40px;
+  margin-top: 60px;
   padding-left: 10px;
   padding-right: 10px;
   gap: 10px;
@@ -291,24 +291,6 @@ body.show-cart .cart-tab {
     -o-transform: rotate(-135deg);
     transform: rotate(-135deg);
   }
-
-  .cart-tab {
-    width: 300px;
-    background-color: white;
-    border: 1px solid black;
-    position: fixed;
-    inset: 0 -310px 0 auto;
-    display: grid;
-    grid-template-rows: 70px 1fr 60px;
-    grid-template-areas:
-      "H1"
-      "."
-      "BTN";
-  }
-
-  body.show-cart .cart-tab {
-    inset: 0 0 0 auto;
-  }
 }
 
 /* Home */
@@ -378,7 +360,6 @@ h1 {
   padding-right: 40px;
 }
 
-.item-box > img,
 .item-box > p {
   margin: 7px;
 }
@@ -399,7 +380,7 @@ h1 {
   padding: 20px;
 }
 
-.item-box > img {
+.item-box > a > img {
   aspect-ratio: 1 / 1;
   width: 100%;
   height: 100%;
