@@ -233,6 +233,7 @@ body.show-cart .cart-tab {
     width: 60px;
     height: 45px;
     position: relative;
+    z-index: 1000;
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
@@ -304,6 +305,29 @@ body.show-cart .cart-tab {
     justify-content: center;
     align-items: center;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .phone {
+    width: 250px;
+    background-color: white;
+    border: 1px solid black;
+    position: fixed;
+    inset: 95px -280px 750px auto;
+    display: grid;
+    grid-template-rows: 70px 1fr 60px;
+    grid-template-areas:
+      "H1"
+      "."
+      "BTN";
+  }
+
+  .phone > ul > li {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  body.show-menu .phone {
+    inset: 0 0 0 auto;
   }
 }
 

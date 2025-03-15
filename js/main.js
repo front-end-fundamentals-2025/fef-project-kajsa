@@ -1,3 +1,38 @@
+/* this was found and used from
+ * https://codepen.io/designcouch/pen/ExvwPY
+ */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const menuIcon = document.getElementById("nav-icon1");
+  const menuTab = document.querySelector(".phone-menu");
+  const menuOverlay = document.querySelector(".menu-overlay");
+
+  // ✅ Function to open/close menu
+  function toggleMenu() {
+    document.body.classList.toggle("show-menu");
+    menuIcon.classList.toggle("open"); // Animate hamburger icon
+  }
+
+  // ✅ Toggle menu on icon click
+  menuIcon.addEventListener("click", toggleMenu);
+
+  // ✅ Close menu when clicking overlay
+  menuOverlay.addEventListener("click", function () {
+    document.body.classList.remove("show-menu");
+    menuIcon.classList.remove("open");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  let icons = document.querySelectorAll("#nav-icon1");
+
+  icons.forEach((icon) => {
+    icon.addEventListener("click", function () {
+      this.classList.toggle("open");
+    });
+  });
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const cartButtons = document.querySelectorAll(".cart"); // Select all cart buttons
   const cartTab = document.querySelector(".cart-tab"); // Cart tab container
