@@ -1,109 +1,153 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Select the cart icon and the shopping cart tab
-  const cartIcon = document.querySelector(".cart");
-  const cartTab = document.querySelector(".show-cart");
-  const closeButton = document.querySelector(".close");
-  const cartList = document.querySelector(".shopping-list");
-  const cartButtons = document.querySelectorAll(".cart-button");
+  const cartButtons = document.querySelectorAll(".cart"); // Select all cart buttons
+  const cartTab = document.querySelector(".cart-tab"); // Cart tab container
+  const closeButton = document.querySelector(".close"); // Close button
+  const overlay = document.createElement("div"); // Create an overlay
+  const shoppingList = document.querySelector(".shopping-list"); // Shopping cart list
+  const cartBadges = document.querySelectorAll(".number-items"); // Select both cart badges
+  const addToCartButtons = document.querySelectorAll(".cart-button"); // "Add to Cart" buttons
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = []; // Cart storage
 
-  // Function to save cart to local storage
-  function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
+  overlay.className = "cart-overlay";
+  document.body.appendChild(overlay); // Append overlay to body
+
+  // Function to open the cart tab
+  function openCart() {
+    document.body.classList.add("show-cart");
+    updateCart();
   }
 
-  // Function to toggle cart visibility
-  function toggleCart() {
-    document.body.classList.toggle("show-cart");
-  }
-
-  // Open cart when cart icon is clicked
-  cartIcon.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent any default action
-    toggleCart();
-  });
-
-  // Close cart when the close button is clicked
-  closeButton.addEventListener("click", function () {
+  // Function to close the cart tab
+  function closeCart() {
     document.body.classList.remove("show-cart");
-  });
-
-  // Function to render the cart items
-  function renderCart() {
-    cartList.innerHTML = ""; // Clear existing items
-    cart.forEach((item, index) => {
-      if (item.quantity > 0) {
-        const cartItem = document.createElement("div");
-        cartItem.classList.add("item");
-        cartItem.innerHTML = `
-                  <div><img src="${item.image}" alt="${item.name}" /></div>
-                  <div class="cart-name"><p>${item.name}</p></div>
-                  <div class="cart-price"><p>${item.price} SEK</p></div>
-                  <div class="quantity">
-                      <span class="minus" data-index="${index}">-</span>
-                      <span>${item.quantity}</span>
-                      <span class="plus" data-index="${index}">+</span>
-                  </div>
-              `;
-        cartList.appendChild(cartItem);
-      }
-    });
-    saveCart();
-    addEventListenersToButtons();
   }
 
-  // Function to add item to cart
+  // Add click event listeners to all cart buttons
+  cartButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      openCart();
+    });
+  });
+
+  // Close button event
+  if (closeButton) {
+    closeButton.addEventListener("click", closeCart);
+  }
+
+  // Close cart when clicking on the overlay
+  overlay.addEventListener("click", closeCart);
+
+  // Function to add an item to the cart
   function addToCart(event) {
-    const button = event.target;
-    const itemBox = button.closest(".item-box");
-    const itemName = itemBox.querySelector("p").textContent;
-    const itemPrice = itemBox.querySelectorAll("p")[1].textContent;
-    const itemImage = itemBox.querySelector("img").src;
+    event.preventDefault();
+    const itemBox = event.target.closest(".item-box"); // Find the closest product item
+    const itemName = itemBox
+      .querySelector("p:first-of-type")
+      .textContent.trim();
+    const itemPrice = itemBox
+      .querySelector("p:nth-of-type(2)")
+      .textContent.trim();
+    const itemImg = itemBox.querySelector("img").src;
 
     const existingItem = cart.find((item) => item.name === itemName);
+
     if (existingItem) {
-      existingItem.quantity++;
+      existingItem.quantity += 1;
     } else {
       cart.push({
         name: itemName,
         price: itemPrice,
-        image: itemImage,
+        img: itemImg,
         quantity: 1,
       });
     }
-    renderCart();
+
+    updateCart();
   }
 
-  // Function to update quantity
-  function updateQuantity(event) {
-    const index = event.target.getAttribute("data-index");
-    if (event.target.classList.contains("plus")) {
-      cart[index].quantity++;
-    } else if (event.target.classList.contains("minus")) {
-      cart[index].quantity--;
-      if (cart[index].quantity <= 0) {
-        cart.splice(index, 1); // Remove item when quantity reaches 0
-      }
+  // Function to update the cart display
+  function updateCart() {
+    shoppingList.innerHTML = ""; // Clear the cart before updating
+
+    if (cart.length === 0) {
+      cartBadges.forEach((badge) => {
+        badge.style.display = "none"; // Hide badge if empty
+        badge.textContent = "0"; // Reset to 0
+      });
+      return;
     }
-    renderCart();
+
+    cart.forEach((item) => {
+      if (item.quantity === 0) return; // Skip rendering items with 0 quantity
+
+      const cartItem = document.createElement("div");
+      cartItem.classList.add("item");
+      cartItem.innerHTML = `
+        <div>
+            <img src="${item.img}" alt="${item.name}" />
+        </div>
+        <div class="cart-name">
+            <p>${item.name}</p>
+        </div>
+        <div class="cart-price">
+            <p>${item.price}</p>
+        </div>
+        <div class="quantity">
+            <span class="minus" data-name="${item.name}">-</span>
+            <span class="cart-quantity">${item.quantity}</span>
+            <span class="plus" data-name="${item.name}">+</span>
+        </div>
+      `;
+
+      shoppingList.appendChild(cartItem);
+    });
+
+    // ✅ Update Cart Badge Count (both desktop & mobile)
+    let totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    cartBadges.forEach((badge) => {
+      badge.style.display = totalItems > 0 ? "flex" : "none";
+      badge.textContent = totalItems; // ✅ Display correct number
+    });
   }
 
-  // Attach event listeners to dynamically created buttons
-  function addEventListenersToButtons() {
-    document.querySelectorAll(".plus").forEach((button) => {
-      button.addEventListener("click", updateQuantity);
-    });
-    document.querySelectorAll(".minus").forEach((button) => {
-      button.addEventListener("click", updateQuantity);
-    });
-  }
-
-  // Add event listeners to "Add to cart" buttons
-  cartButtons.forEach((button) => {
-    button.addEventListener("click", addToCart);
+  // **Event Delegation for `+` and `-` buttons**
+  shoppingList.addEventListener("click", function (event) {
+    if (event.target.classList.contains("minus")) {
+      decreaseQuantity(event);
+    } else if (event.target.classList.contains("plus")) {
+      increaseQuantity(event);
+    }
   });
 
-  // Initialize the cart display
-  renderCart();
+  // Function to decrease quantity
+  function decreaseQuantity(event) {
+    const itemName = event.target.getAttribute("data-name");
+    const itemIndex = cart.findIndex((item) => item.name === itemName);
+
+    if (itemIndex !== -1) {
+      cart[itemIndex].quantity -= 1;
+      if (cart[itemIndex].quantity === 0) {
+        cart.splice(itemIndex, 1); // Remove item if quantity reaches 0
+      }
+      updateCart();
+    }
+  }
+
+  // Function to increase quantity
+  function increaseQuantity(event) {
+    const itemName = event.target.getAttribute("data-name");
+    const item = cart.find((item) => item.name === itemName);
+
+    if (item) {
+      item.quantity += 1;
+      updateCart();
+    }
+  }
+
+  // Attach event listeners to "Add to Cart" buttons
+  addToCartButtons.forEach((button) => {
+    button.addEventListener("click", addToCart);
+  });
 });
