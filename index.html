@@ -19,7 +19,7 @@
   <body>
     <!-- LARGE AND TABLET SCREEN -->
     <header class="big-header">
-      <a href="index.html" class="Logo">Logo</a>
+      <a href="index.html" class="Logo">KSwe</a>
       <menu>
         <nav>
           <ul>
@@ -30,15 +30,21 @@
           </ul>
         </nav>
       </menu>
-      <a class="cart" href="cart.html"><i class="bi bi-cart3"></i></a>
+      <button class="cart">
+        <a href="#"><i class="bi bi-cart3"></i></a>
+      </button>
+      <span class="number-items">0</span>
     </header>
     <!-- PHONE SCREEN -->
     <header class="small-header">
-      <a href="index.html" class="Logo">Logo</a>
+      <a href="index.html" class="Logo">KSwe</a>
       <div class="right-cont">
-        <a class="cart" href="cart.html"><i class="bi bi-cart3"></i></a>
+        <button class="cart">
+          <a href="#"><i class="bi bi-cart3"></i></a>
+        </button>
+        <span class="number-items">0</span>
         <!-- /* this was found and used from *
-    https://codepen.io/designcouch/pen/ExvwPY */ -->
+      https://codepen.io/designcouch/pen/ExvwPY */ -->
         <div id="nav-icon1">
           <span></span>
           <span></span>
@@ -64,7 +70,7 @@
       </section>
       <section>
         <div class="item-box">
-          <img src="img/test2.jpg" alt="" />
+          <a href="detail.html"> <img src="img/test2.jpg" alt="" /></a>
           <p>hej</p>
           <p>200sek</p>
           <button class="cart-button">Add to cart</button>
@@ -72,31 +78,55 @@
       </section>
       <section>
         <div class="item-box">
-          <img src="img/test2.jpg" alt="" />
+          <a href="detail.html"> <img src="img/test2.jpg" alt="" /></a>
           <p>hej</p>
           <p>200sek</p>
-
           <button class="cart-button">Add to cart</button>
         </div>
       </section>
       <section>
         <div class="item-box">
-          <img src="img/test2.jpg" alt="" />
+          <a href="detail.html"> <img src="img/test2.jpg" alt="" /></a>
           <p>hej</p>
           <p>200sek</p>
-
           <button class="cart-button">Add to cart</button>
         </div>
       </section>
       <section>
         <div class="item-box">
-          <img src="img/test2.jpg" alt="" />
+          <a href="detail.html"> <img src="img/test2.jpg" alt="" /></a>
           <p>hej</p>
           <p>200sek</p>
-
           <button class="cart-button">Add to cart</button>
         </div>
       </section>
+      <div class="show-cart">
+        <div class="cart-tab">
+          <h1>Shopping Cart</h1>
+          <div class="shopping-list">
+            <div class="item">
+              <div>
+                <img src="img/test2.jpg" alt="" />
+              </div>
+              <div class="cart-name">
+                <p>hej</p>
+              </div>
+              <div class="cart-price">
+                <p>200sek</p>
+              </div>
+              <div class="quantity">
+                <span class="minus">-</span>
+                <span>1</span>
+                <span class="plus">+</span>
+              </div>
+            </div>
+          </div>
+          <div class="btn">
+            <button class="close">CLOSE</button>
+            <button class="checkout">CHECKOUT</button>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer>

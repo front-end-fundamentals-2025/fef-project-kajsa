@@ -57,6 +57,10 @@ menu {
   margin: 0;
 }
 
+button > a {
+  color: black;
+}
+
 .cart-tab {
   width: 300px;
   background-color: white;
@@ -376,6 +380,7 @@ h1 {
 
 .cart-button {
   background-color: inherit;
+  color: black;
   border-width: 1px;
   border-radius: 5%;
 }

@@ -7,10 +7,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const cartBadges = document.querySelectorAll(".number-items"); // Select both cart badges
   const addToCartButtons = document.querySelectorAll(".cart-button"); // "Add to Cart" buttons
 
-  let cart = []; // Cart storage
+  let cart = JSON.parse(localStorage.getItem("cart")) || []; // Load from LocalStorage or initialize empty
 
   overlay.className = "cart-overlay";
   document.body.appendChild(overlay); // Append overlay to body
+
+  // Function to save cart to LocalStorage
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
 
   // Function to open the cart tab
   function openCart() {
@@ -64,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+    saveCart(); // Save to LocalStorage
     updateCart();
   }
 
@@ -76,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         badge.style.display = "none"; // Hide badge if empty
         badge.textContent = "0"; // Reset to 0
       });
+      saveCart();
       return;
     }
 
@@ -110,6 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
       badge.style.display = totalItems > 0 ? "flex" : "none";
       badge.textContent = totalItems; // ✅ Display correct number
     });
+
+    saveCart(); // Save to LocalStorage after update
   }
 
   // **Event Delegation for `+` and `-` buttons**
@@ -131,6 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (cart[itemIndex].quantity === 0) {
         cart.splice(itemIndex, 1); // Remove item if quantity reaches 0
       }
+      saveCart(); // Save to LocalStorage
       updateCart();
     }
   }
@@ -142,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (item) {
       item.quantity += 1;
+      saveCart(); // Save to LocalStorage
       updateCart();
     }
   }
@@ -150,4 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
   addToCartButtons.forEach((button) => {
     button.addEventListener("click", addToCart);
   });
+
+  // ✅ Load Cart on Page Load
+  updateCart();
 });
