@@ -1,3 +1,16 @@
+let cart = document.querySelector(".cart");
+let closeCart = document.querySelector(".close");
+let body = document.querySelector("body");
+
+cart.addEventListener("click", () => {
+  body.classList.toggle("show-cart");
+  console.log("Cart toggled: ", body.classList.contains("show-cart"));
+});
+
+closeCart.addEventListener("click", () => {
+  body.classList.toggle("show-cart");
+});
+
 /* this was found and used from
  * https://codepen.io/designcouch/pen/ExvwPY
  */
