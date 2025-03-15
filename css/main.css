@@ -185,12 +185,6 @@ body.show-cart .cart-tab {
     align-items: center;
   }
 
-  .phone {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
   .Logo {
     font-size: 40px;
   }
@@ -205,7 +199,6 @@ body.show-cart .cart-tab {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     gap: 30px;
   }
 
@@ -297,57 +290,6 @@ body.show-cart .cart-tab {
 
   body.show-cart .cart-tab {
     inset: 0 0 0 auto;
-  }
-
-  .cart-tab h1 {
-    grid-area: H1;
-    color: black;
-    text-align: center;
-    display: grid;
-  }
-
-  .cart-tab .shopping-list .item img {
-    aspect-ratio: 1/1;
-    width: 100%;
-  }
-
-  .cart-tab .shopping-list .item {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin-top: 40px;
-    padding-left: 10px;
-    padding-right: 10px;
-    gap: 10px;
-    text-align: center;
-    align-items: center;
-  }
-
-  .cart-tab .quantity span {
-    display: inline-block;
-    width: 15px;
-    background-color: rgb(205, 205, 205);
-    border-radius: 5px;
-  }
-
-  .cart-tab .quantity span:nth-child(2) {
-    display: inline-block;
-    background-color: white;
-  }
-
-  .cart-tab .btn {
-    grid-area: BTN;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .cart-tab .btn button {
-    background-color: #e8bc0e;
-    border: none;
-  }
-
-  .cart-tab .btn .close {
-    background-color: rgb(205, 205, 205);
-    border: none;
   }
 }
 
