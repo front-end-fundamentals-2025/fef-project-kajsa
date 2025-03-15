@@ -56,7 +56,7 @@ menu {
   margin: 0;
 }
 
-/* tablet screen */
+/* TABLET SCREEN */
 
 @media screen and (max-width: 1007px) {
   .small-header {
@@ -104,7 +104,7 @@ menu {
   }
 }
 
-/* phone screen */
+/* PHONE SCREEN */
 
 @media screen and (max-width: 743px) {
   .big-header {
@@ -236,32 +236,6 @@ h1 {
   object-fit: cover;
 }
 
-/* product grids */
-
-.item-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  grid-area: IB;
-  padding: 20px;
-}
-
-.item-box > img {
-  aspect-ratio: 1 / 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.item-box > p {
-  text-align: center;
-}
-
-.item-box > button {
-  width: 80%;
-  height: 50px;
-}
-
 /* home page */
 
 #main-page {
@@ -299,15 +273,95 @@ h1 {
   padding-right: 40px;
 }
 
+/* product grids */
+
+.item-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: IB;
+  padding: 20px;
+}
+
+.item-box > img {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-box > p {
+  text-align: center;
+}
+
+.item-box > button {
+  width: 70%;
+  height: 40px;
+  font-size: 1em; /* Ensures text scales with button */
+}
+
 /* product page responsive*/
 
-@media screen and (max-width: 775px) {
+@media screen and (max-width: 1000px) {
+  #product-page {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 3px;
+    row-gap: 5px;
+
+    grid-template-areas:
+      "headline headline headline headline"
+      " IB IB IB IB"
+      " IB IB IB IB"
+      " IB IB IB IB";
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  h1 {
+    grid-area: headline;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  /* product grids */
+
+  .item-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: IB;
+    padding: 10px;
+  }
+
+  .item-box > img {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .item-box > p {
+    text-align: center;
+  }
+
+  .item-box > button {
+    width: 60%;
+    height: 30px;
+    font-size: 0.7em; /* Ensures text scales with button */
+  }
+}
+
+@media screen and (max-width: 730px) {
   #product-page {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
-    grid-gap: 20px;
-    row-gap: 40px;
+    grid-gap: 5px;
+    row-gap: 10px;
 
     grid-template-areas:
       "headline headline"
@@ -319,8 +373,90 @@ h1 {
       " IB IB"
       " IB IB";
 
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* product grids */
+
+  .item-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: IB;
+    padding: 5px;
+  }
+
+  .item-box > img {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .item-box > p {
+    text-align: center;
+  }
+
+  .item-box > button {
+    width: 60%;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #product-page {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 5px;
+    row-gap: 10px;
+
+    grid-template-areas:
+      "headline headline"
+      " IB IB"
+      " IB IB"
+      " IB IB"
+      " IB IB"
+      " IB IB"
+      " IB IB"
+      " IB IB";
+
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  h1 {
+    grid-area: headline;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  /* product grids */
+
+  .item-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: IB;
+    padding: 5px;
+  }
+
+  .item-box > img {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .item-box > p {
+    text-align: center;
+  }
+
+  .item-box > button {
+    width: 50%;
+    height: 30px;
   }
 }
 
