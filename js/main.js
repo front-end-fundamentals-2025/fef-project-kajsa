@@ -1,14 +1,23 @@
-let cart = document.querySelector(".cart");
-let closeCart = document.querySelector(".close");
-let body = document.querySelector("body");
+document.addEventListener("DOMContentLoaded", function () {
+  let cartButtons = document.querySelectorAll(".cart"); // Selects both desktop & mobile cart buttons
+  let closeCart = document.querySelector(".close");
+  let body = document.querySelector("body");
 
-cart.addEventListener("click", () => {
-  body.classList.toggle("show-cart");
-  console.log("Cart toggled: ", body.classList.contains("show-cart"));
-});
+  if (cartButtons.length > 0 && closeCart) {
+    cartButtons.forEach((cart) => {
+      cart.addEventListener("click", (event) => {
+        event.preventDefault();
+        body.classList.toggle("show-cart");
+        console.log("Cart toggled:", body.classList.contains("show-cart"));
+      });
+    });
 
-closeCart.addEventListener("click", () => {
-  body.classList.toggle("show-cart");
+    closeCart.addEventListener("click", () => {
+      body.classList.remove("show-cart");
+    });
+  } else {
+    console.error("Cart buttons or close button not found in the DOM");
+  }
 });
 
 /* this was found and used from
