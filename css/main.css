@@ -56,6 +56,71 @@ menu {
   margin: 0;
 }
 
+.cart-tab {
+  width: 300px;
+  background-color: white;
+  border: 1px solid black;
+  position: fixed;
+  inset: 0 0 0 auto;
+  display: grid;
+  grid-template-rows: 70px 1fr 60px;
+  grid-template-areas:
+    "H1"
+    "."
+    "BTN";
+}
+
+.cart-tab h1 {
+  grid-area: H1;
+  color: black;
+  text-align: center;
+  display: grid;
+}
+
+.cart-tab .shopping-list .item img {
+  aspect-ratio: 1/1;
+  width: 100%;
+}
+
+.cart-tab .shopping-list .item {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  gap: 10px;
+  text-align: center;
+  align-items: center;
+}
+
+.cart-tab .quantity span {
+  display: inline-block;
+  width: 15px;
+  background-color: rgb(205, 205, 205);
+  border-radius: 5px;
+}
+
+.cart-tab .quantity span:nth-child(2) {
+  display: inline-block;
+  background-color: white;
+}
+
+.cart-tab .btn {
+  grid-area: BTN;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cart-tab .btn button {
+  background-color: #e8bc0e;
+  border: none;
+}
+
+.cart-tab .btn .close {
+  background-color: rgb(205, 205, 205);
+  border: none;
+}
+
 /* TABLET SCREEN */
 
 @media screen and (max-width: 1007px) {
@@ -116,6 +181,12 @@ menu {
     align-items: center;
   }
 
+  .phone {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .Logo {
     font-size: 40px;
   }
@@ -130,6 +201,7 @@ menu {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 30px;
   }
 
