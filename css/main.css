@@ -661,12 +661,46 @@ h1 {
 
 /* Detail page */
 
-/* Cart */
+#detail-page {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 10px;
+  row-gap: 10px;
+
+  grid-template-areas:
+    "headline headline"
+    " img T";
+
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h1 {
+  grid-area: headline;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.detail-img {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-area: img;
+}
+
+.detail-T {
+  padding: 20px;
+  grid-area: T;
+}
 
 /* Footer */
 
 footer {
   display: flex;
+  flex-direction: row;
   margin-top: 50px;
   border-top: 1px solid black;
   justify-content: space-between;

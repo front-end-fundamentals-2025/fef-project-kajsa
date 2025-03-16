@@ -1,98 +1,114 @@
-/* this was found and used from
- * https://codepen.io/designcouch/pen/ExvwPY
- */
-
 document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.getElementById("nav-icon1");
-  const menuTab = document.querySelector(".phone-menu");
   const menuOverlay = document.querySelector(".menu-overlay");
+  const cartButtons = document.querySelectorAll(".cart");
+  const cartTab = document.querySelector(".cart-tab");
+  const closeButton = document.querySelector(".close");
+  const shoppingList = document.querySelector(".shopping-list");
+  const cartBadges = document.querySelectorAll(".number-items");
+  const addToCartButtons = document.querySelectorAll(".cart-button");
 
-  // ✅ Function to open/close menu
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  //Menu Toggle Function
   function toggleMenu() {
     document.body.classList.toggle("show-menu");
-    menuIcon.classList.toggle("open"); // Animate hamburger icon
+    menuIcon.classList.toggle("open");
   }
 
-  // ✅ Toggle menu on icon click
-  menuIcon.addEventListener("click", toggleMenu);
-
-  // ✅ Close menu when clicking overlay
-  menuOverlay.addEventListener("click", function () {
+  // Close Menu
+  function closeMenu() {
     document.body.classList.remove("show-menu");
     menuIcon.classList.remove("open");
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  let icons = document.querySelectorAll("#nav-icon1");
-
-  icons.forEach((icon) => {
-    icon.addEventListener("click", function () {
-      this.classList.toggle("open");
-    });
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const cartButtons = document.querySelectorAll(".cart"); // Select all cart buttons
-  const cartTab = document.querySelector(".cart-tab"); // Cart tab container
-  const closeButton = document.querySelector(".close"); // Close button
-  const overlay = document.createElement("div"); // Create an overlay
-  const shoppingList = document.querySelector(".shopping-list"); // Shopping cart list
-  const cartBadges = document.querySelectorAll(".number-items"); // Select both cart badges
-  const addToCartButtons = document.querySelectorAll(".cart-button"); // "Add to Cart" buttons
-
-  let cart = JSON.parse(localStorage.getItem("cart")) || []; // Load from LocalStorage or initialize empty
-
-  overlay.className = "cart-overlay";
-  document.body.appendChild(overlay); // Append overlay to body
-
-  // Function to save cart to LocalStorage
-  function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
-  // Function to open the cart tab
+  // Attach Event Listeners
+  menuIcon?.addEventListener("click", toggleMenu);
+  menuOverlay?.addEventListener("click", closeMenu);
+
+  // Cart Overlay Setup
+  const overlay = document.createElement("div");
+  overlay.className = "cart-overlay";
+  document.body.appendChild(overlay);
+
   function openCart() {
     document.body.classList.add("show-cart");
     updateCart();
   }
 
-  // Function to close the cart tab
   function closeCart() {
     document.body.classList.remove("show-cart");
   }
 
-  // Add click event listeners to all cart buttons
-  cartButtons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      openCart();
-    });
-  });
-
-  // Close button event
-  if (closeButton) {
-    closeButton.addEventListener("click", closeCart);
-  }
-
-  // Close cart when clicking on the overlay
+  cartButtons.forEach((button) => button.addEventListener("click", openCart));
+  closeButton?.addEventListener("click", closeCart);
   overlay.addEventListener("click", closeCart);
 
-  // Function to add an item to the cart
+  // Save to LocalStorage
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  // Update Cart Display
+  function updateCart() {
+    shoppingList.innerHTML = "";
+    let totalItems = 0;
+
+    cart.forEach((item) => {
+      if (item.quantity > 0) {
+        totalItems += item.quantity;
+        shoppingList.innerHTML += `
+          <div class="item">
+            <div><img src="${item.img}" alt="${item.name}" /></div>
+            <div class="cart-name"><p>${item.name}</p></div>
+            <div class="cart-price"><p>${item.price}</p></div>
+            <div class="quantity">
+              <span class="minus" data-name="${item.name}">-</span>
+              <span class="cart-quantity">${item.quantity}</span>
+              <span class="plus" data-name="${item.name}">+</span>
+            </div>
+          </div>
+        `;
+      }
+    });
+
+    // Update Cart Badge Count
+    cartBadges.forEach((badge) => {
+      badge.style.display = totalItems > 0 ? "flex" : "none";
+      badge.textContent = totalItems;
+    });
+
+    saveCart();
+  }
+
+  // Add to Cart Function
   function addToCart(event) {
     event.preventDefault();
-    const itemBox = event.target.closest(".item-box"); // Find the closest product item
-    const itemName = itemBox
-      .querySelector("p:first-of-type")
-      .textContent.trim();
-    const itemPrice = itemBox
-      .querySelector("p:nth-of-type(2)")
-      .textContent.trim();
-    const itemImg = itemBox.querySelector("img").src;
+
+    let itemName, itemPrice, itemImg;
+
+    // Check if we are on the detail page
+    const detailPage = document.getElementById("detail-page");
+
+    if (detailPage) {
+      itemName = document.querySelector(".detail-T h2")?.textContent.trim();
+      itemPrice = document
+        .querySelector(".detail-T p:nth-of-type(2)")
+        ?.textContent.trim();
+      itemImg = document.querySelector(".detail-img")?.src;
+    } else {
+      // Default for product listing pages
+      const itemBox = event.target.closest(".item-box");
+      itemName = itemBox?.querySelector("p:first-of-type")?.textContent.trim();
+      itemPrice = itemBox
+        ?.querySelector("p:nth-of-type(2)")
+        ?.textContent.trim();
+      itemImg = itemBox?.querySelector("img")?.src;
+    }
+
+    if (!itemName || !itemPrice || !itemImg) return;
 
     const existingItem = cart.find((item) => item.name === itemName);
-
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
@@ -104,99 +120,33 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    saveCart(); // Save to LocalStorage
+    updateCart();
+  }
+  // Modify Cart Quantity
+  function modifyQuantity(event) {
+    const itemName = event.target.dataset.name;
+    const item = cart.find((item) => item.name === itemName);
+
+    if (!item) return;
+
+    if (event.target.classList.contains("minus")) {
+      item.quantity -= 1;
+      if (item.quantity === 0) {
+        cart = cart.filter((i) => i.name !== itemName);
+      }
+    } else if (event.target.classList.contains("plus")) {
+      item.quantity += 1;
+    }
+
     updateCart();
   }
 
-  // Function to update the cart display
-  function updateCart() {
-    shoppingList.innerHTML = ""; // Clear the cart before updating
+  // Event Delegation for Cart Modification
+  shoppingList.addEventListener("click", modifyQuantity);
+  addToCartButtons.forEach((button) =>
+    button.addEventListener("click", addToCart)
+  );
 
-    if (cart.length === 0) {
-      cartBadges.forEach((badge) => {
-        badge.style.display = "none"; // Hide badge if empty
-        badge.textContent = "0"; // Reset to 0
-      });
-      saveCart();
-      return;
-    }
-
-    cart.forEach((item) => {
-      if (item.quantity === 0) return; // Skip rendering items with 0 quantity
-
-      const cartItem = document.createElement("div");
-      cartItem.classList.add("item");
-      cartItem.innerHTML = `
-        <div>
-            <img src="${item.img}" alt="${item.name}" />
-        </div>
-        <div class="cart-name">
-            <p>${item.name}</p>
-        </div>
-        <div class="cart-price">
-            <p>${item.price}</p>
-        </div>
-        <div class="quantity">
-            <span class="minus" data-name="${item.name}">-</span>
-            <span class="cart-quantity">${item.quantity}</span>
-            <span class="plus" data-name="${item.name}">+</span>
-        </div>
-      `;
-
-      shoppingList.appendChild(cartItem);
-    });
-
-    // ✅ Update Cart Badge Count (both desktop & mobile)
-    let totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-    cartBadges.forEach((badge) => {
-      badge.style.display = totalItems > 0 ? "flex" : "none";
-      badge.textContent = totalItems; // ✅ Display correct number
-    });
-
-    saveCart(); // Save to LocalStorage after update
-  }
-
-  // **Event Delegation for `+` and `-` buttons**
-  shoppingList.addEventListener("click", function (event) {
-    if (event.target.classList.contains("minus")) {
-      decreaseQuantity(event);
-    } else if (event.target.classList.contains("plus")) {
-      increaseQuantity(event);
-    }
-  });
-
-  // Function to decrease quantity
-  function decreaseQuantity(event) {
-    const itemName = event.target.getAttribute("data-name");
-    const itemIndex = cart.findIndex((item) => item.name === itemName);
-
-    if (itemIndex !== -1) {
-      cart[itemIndex].quantity -= 1;
-      if (cart[itemIndex].quantity === 0) {
-        cart.splice(itemIndex, 1); // Remove item if quantity reaches 0
-      }
-      saveCart(); // Save to LocalStorage
-      updateCart();
-    }
-  }
-
-  // Function to increase quantity
-  function increaseQuantity(event) {
-    const itemName = event.target.getAttribute("data-name");
-    const item = cart.find((item) => item.name === itemName);
-
-    if (item) {
-      item.quantity += 1;
-      saveCart(); // Save to LocalStorage
-      updateCart();
-    }
-  }
-
-  // Attach event listeners to "Add to Cart" buttons
-  addToCartButtons.forEach((button) => {
-    button.addEventListener("click", addToCart);
-  });
-
-  // ✅ Load Cart on Page Load
+  // Initialize Cart on Page Load
   updateCart();
 });
