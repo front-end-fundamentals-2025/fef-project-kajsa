@@ -86,6 +86,13 @@ body.show-cart .cart-tab {
   display: grid;
 }
 
+.cart-tab .shopping-list {
+  flex-grow: 1; /* Fills remaining space */
+  max-height: 550px; /* Adjust as needed */
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding-top: 20px; /* Ensures spacing */
+}
+
 .cart-tab .shopping-list .item img {
   aspect-ratio: 1/1;
   width: 100%;
