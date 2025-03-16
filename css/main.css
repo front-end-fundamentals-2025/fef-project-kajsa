@@ -81,16 +81,22 @@ body.show-cart .cart-tab {
 
 .cart-tab h1 {
   grid-area: H1;
+  margin: 0;
+  padding: 15px 0;
+  background-color: white;
   color: black;
   text-align: center;
-  display: grid;
+  border-bottom: 1px solid black; /* Keeps it separated */
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .cart-tab .shopping-list {
-  flex-grow: 1; /* Fills remaining space */
-  max-height: 550px; /* Adjust as needed */
-  overflow-y: auto; /* Enables vertical scrolling */
-  padding-top: 20px; /* Ensures spacing */
+  flex-grow: 1; /* Expands to fill remaining space */
+  max-height: 600px; /* Adjust height for layout */
+  overflow-y: auto; /* Enables scrolling */
+  padding: 10px;
 }
 
 .cart-tab .shopping-list .item img {
