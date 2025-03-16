@@ -139,7 +139,7 @@ body.show-cart .cart-tab {
   border-radius: 50%;
   text-align: center;
   position: absolute;
-  top: 50px; /* Moves the badge upwards */
+  top: 70px; /* Moves the badge upwards */
   right: 40px; /* Moves the badge slightly to the right */
   display: flex;
   justify-content: center;
@@ -147,6 +147,17 @@ body.show-cart .cart-tab {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+/* ✅ Hide Mobile Menu and Hamburger Icon on Large Screens */
+@media screen and (min-width: 744px) {
+  #nav-icon1,
+  .phone,
+  .menu-overlay {
+    display: none; /* Completely hide */
+    visibility: hidden; /* Prevent interaction */
+    position: absolute; /* Remove from document flow */
+    left: -9999px; /* Push off-screen */
+  }
+}
 /* TABLET SCREEN */
 
 @media screen and (max-width: 1007px) {
