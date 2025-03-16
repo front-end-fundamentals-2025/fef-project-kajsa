@@ -700,9 +700,32 @@ h1 {
 
 footer {
   display: flex;
-  flex-direction: row;
   margin-top: 50px;
   border-top: 1px solid black;
   justify-content: space-between;
   align-items: center;
+}
+
+footer ul {
+  display: flex;
+  flex-direction: row;
+}
+
+.copyright {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.footer-links {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.social-media {
+  width: 20px;
+}
+
+section a {
+  padding: 10px;
 }
