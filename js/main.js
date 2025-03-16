@@ -1,3 +1,14 @@
+/*
+some inspiration/help sources I've used:
+chatGPT
+ https://chatgpt.com/share/67d6f485-2270-8005-8009-c43e89be829e
+https://chatgpt.com/share/67d6f56e-d324-8005-90c9-6f67aec6abdc
+
+Youtube
+ https://youtu.be/gXWohFYrI0M?si=-eDGZrj3AN7xSdV-
+
+ */
+
 document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.getElementById("nav-icon1");
   const menuOverlay = document.querySelector(".menu-overlay");
