@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.getElementById("nav-icon1");
   const menuOverlay = document.querySelector(".menu-overlay");
   const cartButtons = document.querySelectorAll(".cart");
-  const cartTab = document.querySelector(".cart-tab");
   const closeButton = document.querySelector(".close");
   const shoppingList = document.querySelector(".shopping-list");
   const cartBadges = document.querySelectorAll(".number-items");
@@ -149,4 +148,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize Cart on Page Load
   updateCart();
+});
+
+document.querySelectorAll(".cart-button").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    let productImg = event.target.closest(".item-box").querySelector("img");
+    let cart = document.querySelector(".cart");
+
+    let flyingImg = productImg.cloneNode(true);
+    flyingImg.classList.add("flying-item");
+    document.body.appendChild(flyingImg);
+
+    let rect = productImg.getBoundingClientRect();
+    flyingImg.style.left = `${rect.left}px`;
+    flyingImg.style.top = `${rect.top}px`;
+
+    setTimeout(() => {
+      let cartRect = cart.getBoundingClientRect();
+      flyingImg.style.transform = `translate(${cartRect.left - rect.left}px, ${
+        cartRect.top - rect.top
+      }px) scale(0)`;
+      flyingImg.classList.add("hidden");
+    }, 100);
+
+    setTimeout(() => flyingImg.remove(), 900);
+
+    // Add animation to cart icon
+    cart.classList.add("cart-animate");
+    setTimeout(() => cart.classList.remove("cart-animate"), 500);
+  });
 });
