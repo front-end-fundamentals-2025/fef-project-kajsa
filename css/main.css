@@ -403,6 +403,45 @@ h1 {
   padding-right: 40px;
 }
 
+@media screen and (max-width: 844px) {
+  #main-page {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 10px;
+
+    grid-template-areas:
+      "headline headline "
+      "slideshow slideshow  "
+      "slideshow slideshow   "
+      " IB IB  "
+      " IB IB  ";
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (max-width: 417px) {
+  #main-page {
+    display: grid;
+    font-size: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 0;
+
+    grid-template-areas:
+      "headline headline "
+      "slideshow slideshow  "
+      "slideshow slideshow   "
+      " IB IB  "
+      " IB IB  ";
+
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
 /* product page */
 
 #product-page {
